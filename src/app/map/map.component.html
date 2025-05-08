@@ -1,0 +1,58 @@
+<mgl-map 
+  [style]="style" 
+  [zoom]="[15]" 
+  [center]="mapCenter" 
+  [canvasContextAttributes]="{preserveDrawingBuffer: true}"
+>
+
+<ng-container *ngIf="startLngLat">
+  <!-- Marker for start location -->
+  <mgl-marker #startMarker [lngLat]="startLngLat" [color]="'red'"></mgl-marker>
+
+  <!-- Popup for start location -->
+  <mgl-popup [marker]="startMarker">
+    <div>
+      {{case?.caseInformation?.caseReason}}<br>
+      {{case?.caseInformation?.casePriority}}<br>
+      {{case?.caseInformation?.caseComment}}<br>
+      <p-divider />
+      {{case?.caseLocation?.street}} {{case?.caseLocation?.housenumber}}<br>
+      {{case?.caseLocation?.zipCode}}<br>
+    </div>
+  </mgl-popup>
+</ng-container>
+
+<ng-container *ngIf="endLngLat">
+    <!-- Marker for end location -->
+  <mgl-marker #endMarker [lngLat]="endLngLat" [color]="'green'"></mgl-marker>
+
+  <!-- Popup for end location -->
+  <mgl-popup [marker]="endMarker">
+    <div>
+      {{case?.hospitalLocation?.street}} {{case?.hospitalLocation?.housenumber}}<br>
+      {{case?.hospitalLocation?.zipCode}}<br>
+    </div>
+  </mgl-popup>
+</ng-container>
+
+  <!-- GeoJson Source for polyline -->
+  <mgl-geojson-source id="oneline" [data]="geoJsonData">
+    <mgl-feature [geometry]="geometry"> </mgl-feature>
+  </mgl-geojson-source>
+  
+  <!-- Polyline Layer -->
+  <mgl-layer id="route" type="line" source="oneline" [layout]="
+        {
+          'line-join': 'round',
+          'line-cap': 'round'
+        }" [paint]="{
+          'line-color': '#888',
+          'line-width': 8
+        }">
+  </mgl-layer>
+</mgl-map>
+
+<div style="margin-top: 2rem; text-align: center;">
+  <p-button (click)="getNewCase()"> New case
+  </p-button>
+</div>

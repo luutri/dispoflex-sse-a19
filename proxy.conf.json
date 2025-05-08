@@ -1,0 +1,7 @@
+{
+    "/case": {
+      "target": "https://codingchallenge.bewerbung.sse-online.de/case",
+      "changeOrigin": true,
+      "pathRewrite": {"^/case" : ""}
+    }
+  }
