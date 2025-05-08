@@ -8,10 +8,10 @@ import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-map',
+  selector: 'app-case',
   imports: [MapComponent, GeoJSONSourceComponent, FeatureComponent, LayerComponent, MarkerComponent, PopupComponent, ButtonModule, DividerModule, CommonModule],
-  templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  templateUrl: './case.component.html',
+  styleUrl: './case.component.scss'
 })
 export class CaseComponent {
   // MapLibre style object
